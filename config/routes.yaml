@@ -5,8 +5,11 @@ controllers:
 kernel:
     resource: ../src/Kernel.php
     type: annotation
+<<<<<<< HEAD
 
 index:
     path: /index
     controller: App\Controller\IndexController
 
+=======
+>>>>>>> af4e2fa9e8de38a2065de7fd50a369cda987f880
