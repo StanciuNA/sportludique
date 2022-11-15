@@ -7,6 +7,10 @@ kernel:
     type: annotation
 
 index:
-    path: /index
-    controller: App\Controller\IndexController::number
+    path: /
+    controller: App\Controller\IndexController::index
+
+categories:
+    path: /category
+    controller: App\Controller\categoriesController::category
 
