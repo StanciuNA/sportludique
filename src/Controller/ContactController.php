@@ -5,11 +5,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/basket')]
-class BasketController extends AbstractController
+#[Route('/contact')]
+class ContactController extends AbstractController
 {
-    public function basket(): Response
+    public function contact(): Response
     {
-        return $this->render('basket.html.twig');
+        return $this->render('contact.html.twig');
     }
 }
