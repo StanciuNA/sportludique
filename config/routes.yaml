@@ -26,3 +26,6 @@ connexion:
     path: /login
     controller: App\Controller\SecurityController::login
 
+inscritption:
+    path: /register
+    controller: App\Controller\RegistrationController::register
