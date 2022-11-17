@@ -8,7 +8,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Sportludique</title>
+      <title>{% block title %}SportLudique{% endblock %}</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -62,7 +62,9 @@
 			</div>
 		</div>
 		
+{% block body %}{% endblock %}
 	<!-- section footer end -->
+
 	<div class="copyright">2019 All Rights Reserved. <a href="https://html.design">Free html  Templates</a></div>
 
 
@@ -110,5 +112,7 @@ $('#myCarousel').carousel({
             });
         });
       </script> 
+    
    </body>
+
 </html>
