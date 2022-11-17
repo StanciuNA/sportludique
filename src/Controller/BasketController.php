@@ -7,7 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BasketController extends AbstractController
 {
-    public function index(): Response
+    public function basket(): Response
     {
         return $this->render('basket.html.twig');
     }

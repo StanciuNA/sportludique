@@ -12,5 +12,10 @@ index:
 
 categories:
     path: /category
-    controller: App\Controller\categoriesController::category
+    controller: App\Controller\CategoriesController::category
+
+panier:
+    path: /basket
+    controller: App\Controller\BasketController::basket
+
 
