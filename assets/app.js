@@ -11,7 +11,13 @@ import './styles/animate.min.css';
 import './styles/bootstrap.min.css';
 import './styles/jquery.mCustomScrollbar.min.css';
 import './styles/jquery-ui.css';
-
+import './styles/meanmenu.css';
+import './styles/nice-select.css';
+import './styles/normalize.css';
+import './styles/owl.carousel.min.css';
+import './styles/responsive.css';
+import './styles/style.css';
+import './styles/slick.css';
 
 // start the Stimulus application
 import './bootstrap';
