@@ -7,6 +7,11 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
+import './styles/animate.min.css';
+import './styles/bootstrap.min.css';
+import './styles/jquery.mCustomScrollbar.min.css';
+import './styles/jquery-ui.css';
+
 
 // start the Stimulus application
 import './bootstrap';
