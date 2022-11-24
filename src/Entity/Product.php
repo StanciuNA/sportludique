@@ -120,6 +120,7 @@ class Product
         return $this;
     }
 
+
     /**
      * @return Collection<int, OrderContent>
      */
