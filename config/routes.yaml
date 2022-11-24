@@ -31,5 +31,5 @@ inscritption:
     controller: App\Controller\RegistrationController::register
 
 Add_product:
-    path: /admin/add
+    path: /admin/new
     controller:  App\Controller\ProductController::new
