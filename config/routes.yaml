@@ -33,3 +33,7 @@ inscritption:
 Add_product:
     path: /admin/new
     controller:  App\Controller\ProductController::new
+
+Show_product:
+    path: /admin/show
+    controller: App\Controller\ProductController::show
