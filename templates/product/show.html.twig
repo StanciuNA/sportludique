@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Product{% endblock %}
+{% block title %}Produit{% endblock %}
 
 {% block body %}
-    <h1>Product</h1>
+    <h1>Produit</h1>
 
     <table class="table">
         <tbody>
@@ -16,7 +16,7 @@
                 <td>{{ product.nom }}</td>
             </tr>
             <tr>
-                <th>Price</th>
+                <th>Prix</th>
                 <td>{{ product.price }}</td>
             </tr>
             <tr>
@@ -34,9 +34,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_product_index') }}">back to list</a>
+    <a href="{{ path('app_product_index') }}">Retourner à la liste</a>
 
-    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+    <a href="{{ path('app_product_edit', {'id': product.id}) }}">Modifier</a>
 
     {{ include('product/_delete_form.html.twig') }}
 {% endblock %}

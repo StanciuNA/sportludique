@@ -1,9 +1,0 @@
-<main>{% block main %}Nouveau produit{% endblock %}</main>
-
-{% block body %}
-    <h1>Ajouter un nouveau produit</h1>
-
-    {{ include('product/_form.html.twig')}}
-
-    <a href="{{ path('app_product_index')}}">Retour à la liste</a>
-{% endblock %}
