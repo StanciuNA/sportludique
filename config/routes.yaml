@@ -5,11 +5,31 @@ controllers:
 kernel:
     resource: ../src/Kernel.php
     type: annotation
-<<<<<<< HEAD
 
 index:
-    path: /index
-    controller: App\Controller\IndexController
+    path: /
+    controller: App\Controller\IndexController::index
 
-=======
->>>>>>> af4e2fa9e8de38a2065de7fd50a369cda987f880
+categories:
+    path: /category
+    controller: App\Controller\CategoriesController::category
+
+panier:
+    path: /basket
+    controller: App\Controller\BasketController::basket
+
+contact:
+    path: /contact
+    controller: App\Controller\ContactController::contact
+
+connexion:
+    path: /login
+    controller: App\Controller\SecurityController::login
+
+inscritption:
+    path: /register
+    controller: App\Controller\RegistrationController::register
+
+Admin:
+    path: /admin
+    controller:  App\Controller\ProductController::new
