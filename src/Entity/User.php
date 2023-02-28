@@ -45,7 +45,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?\DateTimeInterface $date_creation = null;
 
     #[ORM\ManyToOne(inversedBy: 'users')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?TypeOfPerson $idTypeOfPerson = null;
 
     #[ORM\OneToMany(mappedBy: 'idPerson', targetEntity: Order::class)]
