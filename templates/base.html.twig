@@ -51,7 +51,12 @@
                            <a class="nav-item nav-link" href="/">Accueil</a>
                            <a class="nav-item nav-link" href="/category">Categories</a>
                            <a class="nav-item nav-link" href="/contact">Contact</a>
-                           <a class="nav-item nav-link" href="#">Connexion</a>
+                           {% if app.user %}
+                           <a class="nav-item nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                           {% endif %}
+                           {% if not app.user %}
+                           <a class="nav-item nav-link" href="{{ path('app_login') }}">Connexion</a>
+                            {% endif %}
                            <a class="nav-item nav-link last" href="#"><img src="images/search_icon.png"></a>
                            <a class="nav-item nav-link last" href="/basket"><img src="images/shop_icon.png"></a>
                         </div>
