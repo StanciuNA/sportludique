@@ -27,10 +27,7 @@ class Category
     }
     public function __toString()
     {
-        return $this->id;
         return $this->label;
-        return $this->products;
-
     }
 
     public function getId(): ?int
