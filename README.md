@@ -74,7 +74,10 @@ The following tools were used in this project:
 - installer php https://www.php.net/downloads
 - installer composer https://getcomposer.org/download/
 
-- S'assurer php figure bien dans les variable d'environnment.
+- S'assurer que php figure dans les variable d'environnement.
+- Dans le fichier php.ini décocher l'extension pdo_sqlite.
+- Dans le fichier .env mettre APP_ENV=prod pour la mise en production.
+
 
 
 
@@ -109,6 +112,9 @@ This project is under license from MIT. For more details, see the [LICENSE](LICE
 
 
 Made with by <a href="https://github.com/Daisy0402" target="_blank">Daisy TACITA</a>
+<a href="https://github.com/CamillePerier" target="-blank">Camille Perrier</a>
+<a href="https://github.com/StanciuNA " target="-blank">Nicu Stanciu</a>
+
 
 &#xa0;
 
