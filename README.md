@@ -71,10 +71,10 @@ The following tools were used in this project:
 
 ## :white_check_mark: Requis pour le fonctionnement du projet ##
 
-- installer les php https://www.php.net/downloads
+- installer php https://www.php.net/downloads
 - installer composer https://getcomposer.org/download/
 
-- S'assurer le php figure bien dans les variable d'environnment.
+- S'assurer php figure bien dans les variable d'environnment.
 
 
 
@@ -108,7 +108,7 @@ php bin/console doctrine:fixtures:load
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
 
-Made with :heart: by <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">{{YOUR_NAME}}</a>
+Made with by <a href="https://github.com/Daisy0402" target="_blank">Daisy TACITA</a>
 
 &#xa0;
 
