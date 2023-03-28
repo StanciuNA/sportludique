@@ -53,7 +53,7 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
         foreach($clothes['items'] as $item) {
             $product = new Product();
             $product->setNom($item['title']);
-            $product->setDescription('Des chaussures vraiment géniales');
+            $product->setDescription('Des vêtement incroyables');
             $product->setPrice(mt_rand(5000, 1000000));
             $product->setStock(mt_rand(50, 500));
             $product->setImage('/images/shoes-img2.png');
@@ -66,7 +66,7 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
         foreach($access['items'] as $item) {
             $product = new Product();
             $product->setNom($item['title']);
-            $product->setDescription('Des chaussures vraiment géniales');
+            $product->setDescription('Des accessoires à réver');
             $product->setPrice(mt_rand(5000, 1000000));
             $product->setStock(mt_rand(50, 500));
             $product->setImage('/images/shoes-img2.png');
