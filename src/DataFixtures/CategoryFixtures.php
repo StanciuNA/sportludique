@@ -10,22 +10,34 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 
 class CategoryFixtures extends Fixture
 {
-    public const ADMIN_USER_REFERENCE = 'admin-user';
+    public const SHOES_CATEGORY_REFERENCE = 'shoes-category';
+    public const CLOTHING_CATEGORY_REFERENCE = 'clothes-category';
+    public const ACCESS_CATEGORY_REFERENCE = 'access-category';
 
     public function load(ObjectManager $manager): void
     {
-        for ($i = 0; $i < 4; $i++) {
-            $category = new Category();
-            $category->setLabel('categorie '.$i);
-            
-        
+        $json = file_get_contents(__DIR__.'/categories.json');
+        $data = json_decode($json, true);
 
-            $manager->persist($category);
-        }
+       
+            $shoesCategory = new Category();
+            $shoesCategory->setLabel('Chaussure');
+            $manager->persist($shoesCategory);
+
+            $clothesCategory = new Category();
+            $clothesCategory->setLabel('Vêtement');
+            $manager->persist($clothesCategory);
+
+            $accessCategory = new Category();
+            $accessCategory->setLabel('Accessoire');
+            $manager->persist($accessCategory);
+        
 
         $manager->flush();
 
-        $this->addReference(self::ADMIN_USER_REFERENCE, $category);
+        $this->addReference(self::SHOES_CATEGORY_REFERENCE, $shoesCategory);
+        $this->addReference(self::CLOTHING_CATEGORY_REFERENCE, $clothesCategory);
+        $this->addReference(self::ACCESS_CATEGORY_REFERENCE, $accessCategory);
     }
 
 

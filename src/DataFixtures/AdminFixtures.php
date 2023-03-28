@@ -27,14 +27,26 @@ class AdminFixtures extends Fixture
         $admin->setName('admin');
         $admin->setFirstname('super');
         $admin->setPhone('0584596528');
-        $password = $this->hasher->hashPassword($admin, 'admin1234');
-        $admin->setPassword($password);
+        $AdminPassword = $this->hasher->hashPassword($admin, 'admin1234');
+        $admin->setPassword($AdminPassword);
     
 
         $manager->persist($admin);
-        $manager->flush();
-
         
+
+        $user = new User();
+        $user->setEmail('user@gmail.com');
+        $user->setRoles(['ROLE_USER']);
+        $user->setName('user');
+        $user->setFirstname('toto');
+        $user->setPhone('0552654855');
+        $userPassword = $this->hasher->hashPassword($admin, 'user1234');
+        $user->setPassword($userPassword);
+    
+
+        $manager->persist($admin);
+        $manager->persist($user);
+        $manager->flush();
     }
 
 
