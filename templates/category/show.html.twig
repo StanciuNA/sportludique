@@ -4,20 +4,22 @@
 
 {% block body %}
     <h1>Category</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ category.id }}</td>
-            </tr>
-            <tr>
-                <th>Label</th>
-                <td>{{ category.label }}</td>
-            </tr>
-        </tbody>
-    </table>
-
+    <div class="row">
+        {% for product in products  %}
+				<div class="col-12 col-xl-4 mt-5">
+					<div class="card shadow-sm">
+					<a href={{ path('app_product_show',{id:product.id}) }}>
+						<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">{{product.getNom}}</text></svg>
+						<div class="card-body">
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+    {% endfor %}
+    </div>
     <a href="{{ path('app_category_index') }}">back to list</a>
 
     <a href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a>
