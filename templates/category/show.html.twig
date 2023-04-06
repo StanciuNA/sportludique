@@ -6,7 +6,7 @@
     <h1>Category</h1>
     <div class="row">
         {% for product in products  %}
-				<div class="col-12 col-xl-4 mt-5">
+				<div class="col">
 					<div class="card shadow-sm">
 					<a href={{ path('app_product_show',{id:product.id}) }}>
 						<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
