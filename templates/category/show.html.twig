@@ -6,22 +6,8 @@
     <h1>Category</h1>
     <div class="row">
         {% for product in products  %}
-			<div class="col" style = "max-weight = 300px">
-					<div class="card">
-						<a href={{ path('app_product_show',{id:product.id}) }}>
-						<img src="" alt="" class="card-img-top">
-						<div class="card-body">
-							<h5 class="card-title">{{product.getNom}}</h5>
-							<img src="{{product.getImage}}">
-							<div class="row">
-								<a href="" class="btn btn-danger" style="max-height: 35px;margin-top:12px;">Ajouter à la liste de souhaits</a>
-								<p> {{product.getPrice}} euros</p>
-							</div>
-						</div>
-					</div>
-			</div>
-		
-					{# <div class="card shadow-sm">
+				<div class="col">
+					<div class="card shadow-sm">
 					<a href={{ path('app_product_show',{id:product.id}) }}>
 						<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
 						<title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect>
@@ -33,8 +19,7 @@
 							</div>
 						</div>
 					</div>
-				</div> #}
-
+				</div>
     {% endfor %}
     </div>
     <a href="{{ path('app_category_index') }}">back to list</a>

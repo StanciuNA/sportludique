@@ -28,6 +28,16 @@
      transition: ease all 0.5s;
 }
 
+img.card-img-top {
+    min-height: 250px;
+}
+
+.col-sm-9{
+    padding-top: 95px !important;
+}
+
+
+
 html {
      scroll-behavior: smooth;
 }
@@ -67,8 +77,6 @@ h6 {
      color: #111111;
      margin: 0
 }
-
-
 
 h1 {
      font-size: 24px
@@ -136,11 +144,6 @@ a {
      color: #222222;
      text-decoration: none;
      outline: none !important;
-}
-.style-container {
-
-    background-color: red;
-
 }
 
 a,
@@ -370,7 +373,6 @@ body{
     display:block; margin-bottom:5px; border:1px solid #00a199; 
     margin-bottom: 5px;}
     
-
 .carousel-indicators li.active{
     margin-bottom:5px; background:#00a199;
     
