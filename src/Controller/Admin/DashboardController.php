@@ -17,11 +17,11 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        //return parent::index();
-        $routeBuilder = $this->container->get(AdminUrlGenerator::class);
-        $url = $routeBuilder->setController(ProductCrudController::class)->generateUrl();
+        return parent::index();
+        //$routeBuilder = $this->container->get(AdminUrlGenerator::class);
+        //$url = $routeBuilder->setController(ProductCrudController::class)->generateUrl();
 
-        return $this->redirect($url);
+        //return $this->redirect($url);
 
         // Option 1. You can make your dashboard redirect to some common page of your backend
         //
@@ -49,10 +49,15 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         //yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linktoRoute('Retour au site web', 'fas fa-home', 'index');
+        yield MenuItem::linktoRoute('Accueil', 'fas fa-home', 'admin');
         yield MenuItem::linkToCrud('Produits', 'fa-brands fa-product-hunt', Product::class);
-        yield MenuItem::linkToCrud('Catégories', 'fa fa-tags', Category::class);
-        yield MenuItem::linkToCrud('Utilisateurs', 'fa-solid fa-users', User::class);
+        if($this->isGranted('ROLE_ADMIN')){
+            yield MenuItem::linkToCrud('Catégories', 'fa fa-tags', Category::class);
+            yield MenuItem::linkToCrud('Utilisateurs', 'fa-solid fa-users', User::class);
+
+
+        }
+        
      
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
