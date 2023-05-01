@@ -24,16 +24,26 @@ class Order
     #[ORM\JoinColumn(nullable: false)]
     private ?Status $idStatus = null;
 
-    #[ORM\ManyToOne(inversedBy: 'orders')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $idPerson = null;
 
-    #[ORM\OneToMany(mappedBy: 'idOrder', targetEntity: OrderContent::class)]
-    private Collection $orderContents;
+    #[ORM\ManyToOne(inversedBy: 'idOrder')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Payment $payment = null;
+
+    #[ORM\Column(type: Types::BIGINT)]
+    private ?string $amount = null;
+
+    #[ORM\ManyToOne(inversedBy: 'idorder')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Adress $adress = null;
+
+    #[ORM\ManyToOne(inversedBy: 'idOrder')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Cart $cart = null;
+
 
     public function __construct()
     {
-        $this->orderContents = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -65,45 +75,55 @@ class Order
         return $this;
     }
 
-    public function getIdPerson(): ?User
+
+
+
+    public function getPayment(): ?Payment
     {
-        return $this->idPerson;
+        return $this->payment;
     }
 
-    public function setIdPerson(?User $idPerson): self
+    public function setPayment(?Payment $payment): self
     {
-        $this->idPerson = $idPerson;
+        $this->payment = $payment;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, OrderContent>
-     */
-    public function getOrderContents(): Collection
+    public function getAmount(): ?string
     {
-        return $this->orderContents;
+        return $this->amount;
     }
 
-    public function addOrderContent(OrderContent $orderContent): self
+    public function setAmount(string $amount): self
     {
-        if (!$this->orderContents->contains($orderContent)) {
-            $this->orderContents->add($orderContent);
-            $orderContent->setIdOrder($this);
-        }
+        $this->amount = $amount;
 
         return $this;
     }
 
-    public function removeOrderContent(OrderContent $orderContent): self
+    public function getAdress(): ?Adress
     {
-        if ($this->orderContents->removeElement($orderContent)) {
-            // set the owning side to null (unless already changed)
-            if ($orderContent->getIdOrder() === $this) {
-                $orderContent->setIdOrder(null);
-            }
-        }
+        return $this->adress;
+    }
+
+    public function setAdress(?Adress $adress): self
+    {
+        $this->adress = $adress;
 
         return $this;
     }
+
+    public function getCart(): ?Cart
+    {
+        return $this->cart;
+    }
+
+    public function setCart(?Cart $cart): self
+    {
+        $this->cart = $cart;
+
+        return $this;
+    }
+
 }

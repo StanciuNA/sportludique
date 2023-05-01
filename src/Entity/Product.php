@@ -35,12 +35,17 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $idCategory = null;
 
-    #[ORM\OneToMany(mappedBy: 'idProduct', targetEntity: OrderContent::class)]
-    private Collection $orderContents;
+    #[ORM\ManyToMany(targetEntity: Cart::class, mappedBy: 'products')]
+    private Collection $carts;
+
+    #[ORM\OneToMany(mappedBy: 'productId', targetEntity: CartContent::class)]
+    private Collection $cartContents;
+
+
 
     public function __construct()
     {
-        $this->orderContents = new ArrayCollection();
+        $this->cartContents = new ArrayCollection();
     }
 
 
@@ -126,34 +131,34 @@ class Product
             return $this->nom;
         }
 
-
     /**
-     * @return Collection<int, OrderContent>
+     * @return Collection<int, CartContent>
      */
-    public function getOrderContents(): Collection
+    public function getCartContents(): Collection
     {
-        return $this->orderContents;
+        return $this->cartContents;
     }
 
-    public function addOrderContent(OrderContent $orderContent): self
+    public function addCartContent(CartContent $cartContent): self
     {
-        if (!$this->orderContents->contains($orderContent)) {
-            $this->orderContents->add($orderContent);
-            $orderContent->setIdProduct($this);
+        if (!$this->cartContents->contains($cartContent)) {
+            $this->cartContents->add($cartContent);
+            $cartContent->setProductId($this);
         }
 
         return $this;
     }
 
-    public function removeOrderContent(OrderContent $orderContent): self
+    public function removeCartContent(CartContent $cartContent): self
     {
-        if ($this->orderContents->removeElement($orderContent)) {
+        if ($this->cartContents->removeElement($cartContent)) {
             // set the owning side to null (unless already changed)
-            if ($orderContent->getIdProduct() === $this) {
-                $orderContent->setIdProduct(null);
+            if ($cartContent->getProductId() === $this) {
+                $cartContent->setProductId(null);
             }
         }
 
         return $this;
     }
+
 }

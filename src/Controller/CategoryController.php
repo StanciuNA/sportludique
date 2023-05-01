@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\Product;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,10 +46,12 @@ class CategoryController extends AbstractController
     #[Route('/{id}', name: 'app_category_show', methods: ['GET'])]
     public function show(Category $category): Response
     {
+        $product = new Product();
+
         $allProducts = $category->getProducts();
         return $this->render('category/show.html.twig', [
             'category' => $category,
-            'products' => $allProducts
+            'products' => $allProducts,
         ]);
     }
 }
