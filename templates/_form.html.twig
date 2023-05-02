@@ -2,5 +2,7 @@
 {{ form_start(form)}}
 <label for="name">Nom du produit:</label>
     {{form_widget(form)}}
+<label for="image">Nom de l'image:</label>
+    {{form_widget(form)}}
     <button class="btn">{{button_label|default('Enregistrer')}}</button>
 {{form_end(form)}}

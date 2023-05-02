@@ -17,27 +17,21 @@
 	<!-- new collection section end -->
 	<!-- section footer start -->
     
-	<div class="container-fluid">
+	<div class="container" style="padding-bottom: 50px">
 		<div class="row">
 			{% for category in categories %}
-				<div class="col-12 col-xl-4 mt-5">
-					<div class="card shadow-sm">
-					<a href={{category.getId()}} >
-						<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">{{category.getLabel()}}</text></svg>
-						<div class="card-body">
-						
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group">
-								</div>
-				
-							</div>
-						</div>
+			<div class="col-sm" >
+				<div class="card" style="width: 18rem;">
+					<img class="card-img-top" src="{{category.getImage()}}" alt="Card image cap" style="min-height : 250px;" >
+					<div class="card-body">
+						<h5 class="card-title">{{category.getLabel()}}</h5>
+						<a href="{{path('app_category_show', {'id': category.id})}}" class="btn btn-primary" style="color: #fff;background-color: #db5660;border-color: #db5660;">Parcourir</a>
 					</div>
 				</div>
+			</div>
 			{% endfor %}
 		</div>
 
-    	<a href="{{ path('app_category_new') }}">Create new</a>
 	</div>
 {% endblock %}
 

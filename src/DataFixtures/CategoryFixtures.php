@@ -19,17 +19,19 @@ class CategoryFixtures extends Fixture
         $json = file_get_contents(__DIR__.'/categories.json');
         $data = json_decode($json, true);
 
-       
             $shoesCategory = new Category();
-            $shoesCategory->setLabel('Chaussure');
+            $shoesCategory->setLabel('Chaussures');
+            $shoesCategory->setImage('/images/categorie-chaussures.jpg');
             $manager->persist($shoesCategory);
 
             $clothesCategory = new Category();
-            $clothesCategory->setLabel('Vêtement');
+            $clothesCategory->setLabel('Vêtements');
+            $clothesCategory->setImage('/images/categorie-vetement.png');
             $manager->persist($clothesCategory);
 
             $accessCategory = new Category();
-            $accessCategory->setLabel('Accessoire');
+            $accessCategory->setLabel('Accessoires');
+            $accessCategory->setImage('/images/categorie-accessoires.jpg');
             $manager->persist($accessCategory);
         
 
