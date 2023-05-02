@@ -15,8 +15,8 @@ categories:
     controller: App\Controller\CategoriesController::category
 
 panier:
-    path: /basket
-    controller: App\Controller\BasketController::basket
+    path: /cart
+    controller: App\Controller\CartController::cart
 
 contact:
     path: /contact
@@ -33,3 +33,13 @@ inscritption:
 Admin:
     path: /admin
     controller:  App\Controller\ProductController::new
+
+cart_add:
+  path: /cart/add
+  controller: App\Controller\CartController::addProduct
+  methods: POST
+
+cart_remove:
+  path: /cart/remove
+  controller: App\Controller\CartController::removeContent
+  methods: POST

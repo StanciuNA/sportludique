@@ -3,25 +3,48 @@
 {% block title %}Category{% endblock %}
 
 {% block body %}
-    <h1>Category</h1>
-    <div class="row">
-        {% for product in products  %}
-				<div class="col">
-					<div class="card shadow-sm">
-					<a href={{ path('app_product_show',{id:product.id}) }}>
-						<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-						<title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect>
-						<text x="50%" y="50%" fill="#eceeef" dy=".3em">{{product.getNom}} </text></svg>
-						<div class="card-body">
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-    {% endfor %}
-    </div>
-    <a href="{{ path('app_category_index') }}">back to list</a>
 
+<div class="row row-cols-sm-2 row-cols-md-3 g-4">
+  {% for product in products %}
+    <div class="col">
+      <div class="card h-100">
+        <a href="{{ path('app_product_show', {'id': product.id}) }}">
+          <img src="{{ product.getImage }}" class="card-img-top" alt="{{ product.getNom }}">
+        </a>
+        <div class="card-body">
+          <a href="{{ path('app_product_show', {'id': product.id}) }}">
+            <h5 class="card-title">{{ product.getNom }}</h5>
+          </a>
+          <p class="card-text">{{ product.getPrice }} euros</p>
+          <button class="btn btn-primary add-to-cart" data-product-id="{{ product.id }}">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+
+<script>
+  const addToCartButtons = document.querySelectorAll(".add-to-cart");
+
+  addToCartButtons.forEach(button => {
+    button.addEventListener("click", function() {
+      const productId = this.getAttribute("data-product-id");
+
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "/cart/add");
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+      xhr.onreadystatechange = function() {
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+          const response = JSON.parse(this.responseText);
+          alert("Le produit a été ajouté à votre panier")
+        }
+      };
+
+      const data = "productId=" + productId;
+      xhr.send(data);
+    });
+  });
+</script>
 {% endblock %}
