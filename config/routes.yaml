@@ -43,3 +43,4 @@ cart_remove:
   path: /cart/remove
   controller: App\Controller\CartController::removeContent
   methods: POST
+
