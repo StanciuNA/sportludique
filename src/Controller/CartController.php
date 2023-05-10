@@ -13,7 +13,7 @@ use App\Entity\CartContent;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\CartRepository;
 use App\Repository\CartContentRepository;
-use App\Manager\CartManager;
+use App\Container\CartManager;
 
 
 #[Route('/cart')]
@@ -24,6 +24,7 @@ class CartController extends AbstractController
 
         $user = $this->getUser();
         $result = array();
+        $totalPrice = 0;
         if($user){
             $lastCart = $entityManager->getRepository(cart::class)->findOneBy(
                 ['idPerson' => $user->getId()],
@@ -38,18 +39,15 @@ class CartController extends AbstractController
                 $quantity->setQuantity($cartLine->getQuantity());
                 $quantity->setBulkPrice();
                 $quantity->setCartContent($cartLine);
+                $totalPrice += $quantity->getBulkPrice();
                 array_push($result,$quantity);
-    
             }
-    
-            foreach($result as $a){
-                dump($a->getProduct()->getNom());
-            
-            }   
+   
         }
 
         return $this->renderForm('cart.html.twig',[
             'Products' => $result,
+            'totalPrice' => $totalPrice
         ]);
 
     }
@@ -69,7 +67,7 @@ class CartController extends AbstractController
             $entityManager->persist($lastCart);
             $entityManager->flush();
         }
-        //dump($lastCart);
+
         $userId= strval($user->getId());
         $cartContent = $entityManager->getRepository(CartContent::class)->findBy(
             ['cartId' => $lastCart,'productId' => $productId]
@@ -107,6 +105,7 @@ class CartController extends AbstractController
     return $response;
     
     }
+
     public function removeContent(EntityManagerInterface $entityManager,Request $request): JsonResponse
     {
         $requestData = $request->request->get('CartContentId');
@@ -138,6 +137,13 @@ class CartController extends AbstractController
         
         return new JsonResponse($responseData);
 
+    }
 
+    public function updateContent(EntityManagerInterface $entityManager,Request $request): JsonResponse{
+        $quantity = $request->request->get('quantity');
+        $cartId = $request->request->get('cartId');
+        dump($request);
+        $responseData = ['result' => 'success'];
+        return new JsonResponse($responseData);
     }
 }

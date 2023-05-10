@@ -43,3 +43,8 @@ cart_remove:
   path: /cart/remove
   controller: App\Controller\CartController::removeContent
   methods: POST
+
+cart_update:
+  path: /cart/update
+  controller: App\Controller\CartController::updateContent
+  methods: POST

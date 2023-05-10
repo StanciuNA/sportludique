@@ -49,6 +49,10 @@
                         </div>
                         </div>
                         {% endfor %}
+                        <div class="d-flex justify-content-between p-2 mb-2" style="background-color: #ffff;">
+                            <h5 class="fw-bold mb-0" style="font-size: 20px">Total:</h5>
+                            <h5 class="fw-bold mb-0" style="font-size: 20px">{{ totalPrice }} euros</h5>
+                        </div>
 
                         <div class="card">
                         <div class="card-body">
@@ -81,6 +85,20 @@
             }
             };
         });
+        
+        let cartId = button.value;
+        const input = div.querySelector('#form1');
+        console.log(input);
+        input.addEventListener(('click'), function() {
+            let quantity = input.value;
+            console.log(quantity);
+            const newXhr = new XMLHttpRequest();
+            newXhr.open("POST", "/cart/update");
+            newXhr.setRequestHeader("Content-Type", "application/json");
+            let data = "cartId=" + cartId +"&quantity="+quantity;
+            newXhr.send(data);
+        })
+        
         });
 
     

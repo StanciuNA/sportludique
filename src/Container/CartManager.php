@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Manager;
+namespace App\Container;
 
 use App\Entity\Product;
 use App\Entity\CartContent;
