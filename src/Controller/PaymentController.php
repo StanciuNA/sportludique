@@ -24,6 +24,7 @@ class PaymentController extends AbstractController
         
         $user = $this->getUser();
         $result = array();
+        $totalPrice = 0;
         if($user){
             $lastCart = $entityManager->getRepository(cart::class)->findOneBy(
                 ['idPerson' => $user->getId()],
@@ -39,23 +40,28 @@ class PaymentController extends AbstractController
                 $quantity->setBulkPrice();
                 $quantity->setCartContent($cartLine);
                 array_push($result,$quantity);
+
+                $totalPrice += $quantity->getBulkPrice() * $quantity->getQuantity();
     
             }
-
+    
             foreach($result as $a){
-                dump($a->getProduct()->getPrice());
-                
+                dump($a->getProduct()->getNom());
             
-            } 
+            }   
+        }
 
 
 
-
-
-        return $this->render('payment.html.twig');
+        // Transmission des valeurs à la vue
+        return $this->render('payment.html.twig', [
+            'Products' => $result,
+            'totalPrice'=>$totalPrice,
+        ]);
 
     }
 
     
 
 }
+

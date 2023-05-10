@@ -12,46 +12,37 @@
               <h5><span class="far fa-check-square pe-2"></span><b>Panier</b> </h5>
               <span class="ps-2"></span>
             </div>
-            <h4 class="text-success">$85.00</h4>
-            <h4>Diabetes Pump & Supplies</h4>
+            <h4 class="text-success">{{ totalPrice }}€</h4>
+            
+            {% for product in Products %}
             <div class="d-flex pt-2">
               <div>
                 <p>
-                  <b>Insurance Responsibility <span class="text-success">$71.76</span></b>
+                  <b>{{product.getProduct.getNom}}<span class="text-success">{{product.getBulkPrice}}€</span></b>
                 </p>
               </div>
               <div class="ms-auto">
-                <p class="text-primary">
-                  <i class="fas fa-plus-circle text-primary pe-1"></i>Add insurance card
-                </p>
+                <img
+                                src={{product.getProduct.getImage}} class="img-fluid rounded-3" alt="Cotton T-shirt">
               </div>
             </div>
-            <p>
-              Insurance claims and all necessary dependencies will be submitted to your
-              insurer for the coverred portion of this order
-            </p>
-            <div class="rounded d-flex" style="background-color: #f8f9fa;">
-              <div class="p-2">Aetna-Open Access</div>
-              <div class="ms-auto p-2">OAP</div>
-            </div>
-            <hr />
+            {% endfor %}
+            
+            
+           
             <div class="pt-2">
               <div class="d-flex pb-2">
                 <div>
                   <p>
-                    <b>Patient Balance <span class="text-success">$13.24</span></b>
+                    
                   </p>
                 </div>
                 <div class="ms-auto">
-                  <p class="text-primary">
-                    <i class="fas fa-plus-circle text-primary pe-1"></i>Add payment card
-                  </p>
+                  
                 </div>
               </div>
               <p>
-                This is an estimate for the portion of your order (not covered by
-                insurance) due today . once insurance finalizes their review refunds
-                and/or balances will reconcile automatically.
+                Pour des raisons techniques, il n'y a que la possibilté de payer via paypal.
               </p>
               <form class="pb-3">
                 <div class="d-flex flex-row pb-3">
@@ -88,54 +79,26 @@
 
           <div class="col-md-5 col-xl-4 offset-xl-1">
             <div class="py-4 d-flex justify-content-end">
-              <h6><a href="#!">Cancel and return to website</a></h6>
+              <h6><a href="/home">Cancel and return to website</a></h6>
             </div>
             <div class="rounded d-flex flex-column p-2" style="background-color: #f8f9fa;">
               <div class="p-2 me-3">
-                <h4>Order Recap</h4>
+                <h4>Récapitulatif</h4>
               </div>
-              <div class="p-2 d-flex">
-                <div class="col-8">Contracted Price</div>
-                <div class="ms-auto">$186.76</div>
-              </div>
+            
               <div class="p-2 d-flex">
                 <div class="col-8">Amount toward deductible</div>
-                <div class="ms-auto">$0.00</div>
+                <div class="ms-auto">$0.00€</div>
               </div>
               <div class="p-2 d-flex">
                 <div class="col-8">Coinsurance( 0% )</div>
-                <div class="ms-auto">+ $0.00</div>
+                <div class="ms-auto">+ 0.00€</div>
               </div>
-              <div class="p-2 d-flex">
-                <div class="col-8">Copayment</div>
-                <div class="ms-auto">+ $40.00</div>
-              </div>
-              <div class="border-top px-2 mx-2"></div>
-              <div class="p-2 d-flex pt-3">
-                <div class="col-8">Total Deductible, Coinsurance, and Copay</div>
-                <div class="ms-auto">$40.00</div>
-              </div>
-              <div class="p-2 d-flex">
-                <div class="col-8">
-                  Maximum out-of-pocket on Insurance Policy (not reached)
-                </div>
-                <div class="ms-auto">$6500.00</div>
-              </div>
-              <div class="border-top px-2 mx-2"></div>
-              <div class="p-2 d-flex pt-3">
-                <div class="col-8">Insurance Responsibility</div>
-                <div class="ms-auto"><b>$71.76</b></div>
-              </div>
-              <div class="p-2 d-flex">
-                <div class="col-8">
-                  Patient Balance <span class="fa fa-question-circle text-dark"></span>
-                </div>
-                <div class="ms-auto"><b>$71.76</b></div>
-              </div>
+              
               <div class="border-top px-2 mx-2"></div>
               <div class="p-2 d-flex pt-3">
                 <div class="col-8"><b>Total</b></div>
-                <div class="ms-auto"><b class="text-success">$85.00</b></div>
+                <div class="ms-auto"><b class="text-success">{{ totalPrice }}€</b></div>
               </div>
             </div>
           </div>
