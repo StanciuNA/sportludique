@@ -19,8 +19,8 @@ use App\Manager\CartManager;
 
 class PaymentController extends AbstractController
 {
-    #[Route('/payment')]
-    public function payment(EntityManagerInterface $entityManager,Request $request): Response{
+    #[Route('/orderRecap')]
+    public function index(EntityManagerInterface $entityManager,Request $request): Response{
         
         $user = $this->getUser();
         $result = array();
@@ -57,9 +57,16 @@ class PaymentController extends AbstractController
         return $this->render('payment.html.twig', [
             'Products' => $result,
             'totalPrice'=>$totalPrice,
+            'user'=>$user,
         ]);
 
     }
+
+
+    
+
+
+    
 
     
 
