@@ -140,10 +140,17 @@ class CartController extends AbstractController
     }
 
     public function updateContent(EntityManagerInterface $entityManager,Request $request): JsonResponse{
+        
         $quantity = $request->request->get('quantity');
         $cartId = $request->request->get('cartId');
-        dump($request);
-        $responseData = ['result' => 'success'];
+        $cartContent = $entityManager->getRepository(cartContent::class)->findBy(['id' => $cartId]);
+        $product = $entityManager->getRepository(product::class)->findOneBy(['id' => $cartContent]); 
+        $bulkPrice = intval($quantity) * $product->getPrice();
+
+        // dump($bulkPrice);
+        // dump($quantity);
+
+        $responseData = ['result' => $bulkPrice];
         return new JsonResponse($responseData);
     }
 }

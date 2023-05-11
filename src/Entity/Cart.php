@@ -32,6 +32,7 @@ class Cart
     #[ORM\OneToMany(mappedBy: 'cartId', targetEntity: CartContent::class)]
     private Collection $cartContents;
 
+
     public function __construct()
     {
         $this->idOrder = new ArrayCollection();
@@ -125,6 +126,7 @@ class Cart
         }
 
         return $this;
+        
     }
 
 }

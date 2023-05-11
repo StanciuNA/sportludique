@@ -40,6 +40,9 @@ class Order
     #[ORM\JoinColumn(nullable: false)]
     private ?Cart $cart = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?float $totalPrice = null;
+
 
     public function __construct()
     {
@@ -122,6 +125,18 @@ class Order
     public function setCart(?Cart $cart): self
     {
         $this->cart = $cart;
+
+        return $this;
+    }
+
+    public function getTotalPrice(): ?float
+    {
+        return $this->totalPrice;
+    }
+
+    public function setTotalPrice(?float $totalPrice): self
+    {
+        $this->totalPrice = $totalPrice;
 
         return $this;
     }
