@@ -88,7 +88,7 @@ class CartController extends AbstractController
             $entityManager->flush();
 
             }
-            dump($cartContent);
+            //dump($cartContent);
             
 
             $response = new Response(
@@ -143,12 +143,11 @@ class CartController extends AbstractController
         
         $quantity = $request->request->get('quantity');
         $cartId = $request->request->get('cartId');
-        $cartContent = $entityManager->getRepository(cartContent::class)->findBy(['id' => $cartId]);
-        $product = $entityManager->getRepository(product::class)->findOneBy(['id' => $cartContent]); 
+        
+        $cartContent = $entityManager->getRepository(cartContent::class)->findOneBy(['id' => $cartId]);
+        $product = $entityManager->getRepository(product::class)->findOneBy(['id' => $cartContent->getProductId()]);
+        
         $bulkPrice = intval($quantity) * $product->getPrice();
-
-        // dump($bulkPrice);
-        // dump($quantity);
 
         $responseData = ['result' => $bulkPrice];
         return new JsonResponse($responseData);
