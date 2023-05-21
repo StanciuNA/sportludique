@@ -76,9 +76,19 @@
             const data = "CartContentId=" + cartContentId;
             xhr.send(data);
             xhr.onreadystatechange = function() {
-            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                div.remove();
-            }
+                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                    let price = div.querySelector(".mb-0").innerHTML;
+                    price = price.split(" ");
+                    price = price[0];
+                    //console.log(price);
+                    const regex = /\d+/;
+                    let totalPriceDiv = document.querySelector(".fw-bold.mb-0");
+                    let total = totalPriceDiv.innerHTML.match(regex);
+                    total[0] = parseInt(total) - parseInt(price);
+                    totalPriceDiv.innerHTML = "Total: "+ total[0] +" euros";
+                    console.log(total);
+                    div.remove();
+                }
             };
         });
         
@@ -101,7 +111,6 @@
                     const sameDivs = document.querySelectorAll('.card.rounded-3.mb-4');
                     let total = 0;
                     sameDivs.forEach((section) =>{
-                        //console.log(section);
                         let price = section.querySelector('.mb-0').innerHTML.split(" ");
                         price = parseInt(price[0]);
                         total += price;
