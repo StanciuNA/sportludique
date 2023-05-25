@@ -3,45 +3,17 @@
 {% block title %}Produit{% endblock %}
 
 {% block body %}
-    <h1>Produit</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg">
+                <div class="main-part" style="min-width: 400px;min-height: 400px;">
+                
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <form action="/action_page.php" method="post" id="productForm">
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ product.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ product.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ product.price }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ product.description }}</td>
-            </tr>
-            <tr>
-                <th>Stock</th>
-                <td>{{ product.stock }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <th> 
-                    <img src =  {{ product.image }}  style = 'width: 100%;
-                                                              max-width: 200px;
-                                                              max-height: 200px
-                                                              height: auto;'/> 
-                </th>
-                                
-            </tr>
-        </tbody>
-    </table>
-    <input type="text" id="lname" name="lname">
-    </form>
+
 
     <a href="{{ path('app_product_index') }}">Retourner à la liste</a>
 

@@ -147,6 +147,14 @@ class CartController extends AbstractController
         $cartContent = $entityManager->getRepository(cartContent::class)->findOneBy(['id' => $cartId]);
         $product = $entityManager->getRepository(product::class)->findOneBy(['id' => $cartContent->getProductId()]);
         
+        if($quantity == 0){
+            $entityManager->remove($cartContent);
+            $entityManager->flush();
+        }
+        else{
+            $cartContent->setQuantity(intval($quantity));
+            $entityManager->flush();
+        }
         $bulkPrice = intval($quantity) * $product->getPrice();
 
         $responseData = ['result' => $bulkPrice];
