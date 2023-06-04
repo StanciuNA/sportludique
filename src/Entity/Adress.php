@@ -31,6 +31,15 @@ class Adress
     #[ORM\JoinColumn(nullable: false)]
     private ?User $idUser = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $firstname = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
+
     public function __construct()
     {
         $this->idorder = new ArrayCollection();
@@ -115,6 +124,42 @@ class Adress
     public function setIdUser(?User $idUser): self
     {
         $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }
