@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Category index {% endblock %}
+
+{% block body %}
+
+    <h1>Category index</h1>
+
+	<!-- new collection section start -->
+  <div class="collection_text">Collection</div>
+  
+    <div class="layout_padding collection_section">
+    	<div class="container">
+
+    	</div>
+    </div>
+	<!-- new collection section end -->
+	<!-- section footer start -->
+    
+	<div class="container" style="padding-bottom: 50px">
+		<div class="row">
+			{% for category in categories %}
+			<div class="col-sm" >
+				<div class="card" style="width: 18rem;">
+					<img class="card-img-top" src="{{category.getImage()}}" alt="Card image cap" style="min-height : 250px;" >
+					<div class="card-body">
+						<h5 class="card-title">{{category.getLabel()}}</h5>
+						<a href="{{path('app_category_show', {'id': category.id})}}" class="btn btn-primary" style="color: #fff;background-color: #db5660;border-color: #db5660;">Parcourir</a>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+
+	</div>
+{% endblock %}
+
+

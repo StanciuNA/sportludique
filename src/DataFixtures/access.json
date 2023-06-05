@@ -1,0 +1,18 @@
+{
+    "items": [
+    {
+        "id": 0,
+        "title": "Montre connectée",
+        "price": "$120.83",
+        "image": "/images/test-image-01.jpg"
+    },
+    {
+        "id": 1,
+        "title": "Casquette",
+        "price": "$126.89",
+        "image": "/images/test-image-02.jpg"
+    }
+
+]
+
+}

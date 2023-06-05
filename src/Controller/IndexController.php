@@ -7,8 +7,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class IndexController extends AbstractController
 {
-    public function number(): Response
+    public function index(): Response
     {
-        return $this->render('index.html.twig');
+        return $this->render('home.html.twig');
     }
 }

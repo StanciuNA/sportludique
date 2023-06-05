@@ -7,6 +7,44 @@ kernel:
     type: annotation
 
 index:
-    path: /index
-    controller: App\Controller\IndexController::number
+    path: /
+    controller: App\Controller\IndexController::index
 
+categories:
+    path: /category
+    controller: App\Controller\CategoriesController::category
+
+panier:
+    path: /cart
+    controller: App\Controller\CartController::cart
+
+contact:
+    path: /contact
+    controller: App\Controller\ContactController::contact
+
+connexion:
+    path: /login
+    controller: App\Controller\SecurityController::login
+
+inscritption:
+    path: /register
+    controller: App\Controller\RegistrationController::register
+
+Admin:
+    path: /admin
+    controller:  App\Controller\ProductController::new
+
+cart_add:
+  path: /cart/add
+  controller: App\Controller\CartController::addProduct
+  methods: POST
+
+cart_remove:
+  path: /cart/remove
+  controller: App\Controller\CartController::removeContent
+  methods: POST
+
+app_informations:
+    path: /adressInformation
+    controller: App\Controller\PaymentController::adressInformation
+    methods : [GET, POST]
