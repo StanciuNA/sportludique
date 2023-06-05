@@ -43,12 +43,16 @@ cart_remove:
   path: /cart/remove
   controller: App\Controller\CartController::removeContent
 <<<<<<< HEAD
+<<<<<<< HEAD
   methods: POST
 
 app_informations:
     path: /adressInformation
     controller: App\Controller\PaymentController::adressInformation
     methods : [GET, POST]
+=======
+  methods: POST
+>>>>>>> parent of 2b6d0a8 (modif)
 =======
   methods: POST
 >>>>>>> parent of 2b6d0a8 (modif)
