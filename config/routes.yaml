@@ -53,3 +53,7 @@ app_product_show:
     path: /product
     controller: App\Controller\ProductController::show
 
+app_product_new:
+    path: /product/new
+    controller: App\Controller\ProductController::new
+
