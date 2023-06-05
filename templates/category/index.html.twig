@@ -22,7 +22,6 @@
 			{% for category in categories %}
 			<div class="col-sm" >
 				<div class="card" style="width: 18rem;">
-					<img class="card-img-top" src="{{category.getImage()}}" alt="Card image cap" style="min-height : 250px;" >
 					<div class="card-body">
 						<h5 class="card-title">{{category.getLabel()}}</h5>
 						<a href="{{path('app_category_show', {'id': category.id})}}" class="btn btn-primary" style="color: #fff;background-color: #db5660;border-color: #db5660;">Parcourir</a>

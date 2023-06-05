@@ -49,3 +49,7 @@ app_informations:
     controller: App\Controller\PaymentController::adressInformation
     methods : [GET, POST]
 
+app_product_show:
+    path: /product
+    controller: App\Controller\ProductController::show
+

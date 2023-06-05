@@ -24,8 +24,6 @@ class Category
     #[ORM\OneToMany(mappedBy: 'idCategory', targetEntity: Product::class)]
     private Collection $products;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $image = null;
 
     public function __construct()
     {
