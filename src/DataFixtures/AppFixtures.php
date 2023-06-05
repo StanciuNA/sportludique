@@ -41,7 +41,7 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
             $product = new Product();
             $product->setNom($item['title']);
             $product->setDescription('Des chaussures vraiment géniales');
-            $product->setPrice(mt_rand(5000, 1000000));
+            $product->setPrice(mt_rand(50, 100));
             $product->setStock(mt_rand(50, 500));
             $product->setImage('/images/shoes-img2.png');
             $product->setIdCategory($this->getReference(CategoryFixtures::SHOES_CATEGORY_REFERENCE));

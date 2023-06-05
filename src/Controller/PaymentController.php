@@ -17,6 +17,17 @@ use App\Repository\CartRepository;
 use App\Repository\CartContentRepository;
 use App\Manager\CartManager;
 use App\Form\AdressType;
+use Symfony\Component\Security\Core\Security;
+use Omnipay\Omnipay;
+use Omnipay\Paypal\RestGateway;
+
+
+//require_once 'C:\Users\utilisateur\Documents\GitHub\sportludique\vendor\autoload.php';
+//require_once __DIR__ . '/vendor/autoload.php';
+
+
+
+
 
 
 class PaymentController extends AbstractController
@@ -24,9 +35,9 @@ class PaymentController extends AbstractController
     private $passerelle;
     private $manager;
 
-    public function _construct(EntityManagerInterface $manager)
+    public function __construct(EntityManagerInterface $manager)
     {
-        $this->passerelle=Omnipay::create('Paypal_Rest');
+        $this->passerelle=Omnipay::create('PayPal_Rest');
         $this->passerelle->setClientId($_ENV['PAYPAL_CLIENT_ID']);
         $this->passerelle->setSecret($_ENV['PAYPAL_SECRET_KEY']);
         $this->passerelle->setTestMode(true);
@@ -68,6 +79,49 @@ class PaymentController extends AbstractController
             }   
         }
 
+
+        // Transmission des valeurs à la vue
+        return $this->render('payment.html.twig', [
+            'Products' => $result,
+            'totalPrice'=>$totalPrice,
+            'user'=>$user,
+            'adress' => $adress,
+        ]);
+
+    }
+
+
+
+
+
+    #[Route('/adressInformation', name: 'app_informations', methods: ['GET', 'POST'])]
+    public function adressInformation(EntityManagerInterface $entityManager, Request $request): Response
+    {
+        $user = $this->getUser();
+        $Adress = new Adress();
+        $Adress->setIdUser($user);
+        $form = $this->createForm(AdressType::class, $Adress);
+        $form->handleRequest($request);
+
+    // Vérification de la validation du formulaire
+    if ($form->isSubmitted() && $form->isValid()) {
+        // Enregistrement des données dans la base de données
+      
+        $entityManager->persist($Adress);
+        $entityManager->flush();
+
+        // Redirection vers une autre page après l'enregistrement
+        return $this->redirectToRoute('app_orderRecap');
+    }
+
+        return $this->render('adress.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/paymentttt', name: 'app_payment')]
+    public function payment(Request $request):Response
+    {
         $token=$request->request->get('token');
 
         if(!$this->isCsrfTokenValid('myform',$token))
@@ -100,58 +154,10 @@ class PaymentController extends AbstractController
              
              return $th->getMessage();
          }
-       
-
-
-
-
-        // Transmission des valeurs à la vue
-        return $this->render('payment.html.twig', [
-            'Products' => $result,
-            'totalPrice'=>$totalPrice,
-            'user'=>$user,
-            'adress' => $adress,
-        ]);
-
-    }
-
-
-
-
-
-    #[Route('/adressInformation', name:'app_informations')]
-    public function adressInformation(EntityManagerInterface $entityManager, Request $request): Response
-    {
-        $user = $this->getUser();
-        $Adress = new Adress();
-        $Adress->setIdUser($user);
-        $form = $this->createForm(AdressType::class, $Adress);
-        $form->handleRequest($request);
-
-    // Vérification de la validation du formulaire
-    if ($form->isSubmitted() && $form->isValid()) {
-        // Enregistrement des données dans la base de données
-      
-        $entityManager->persist($Adress);
-        $entityManager->flush();
-
-        // Redirection vers une autre page après l'enregistrement
-        return $this->redirectToRoute('app_orderRecap');
-    }
-
-        return $this->render('adress.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /*#[Route('/payment', name: 'app_payment')]
-    public function payment(Request $request):Response
-    {
-        
         return $this->render('payment.html.twig');
             
 
-    }*/
+    }
 
     #[Route('/sucess', name: 'app_success')]
     public function success():Response
