@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit{% endblock %}
+{% block title %}Product{% endblock %}
 
 {% block body %}
-    <h1>Produit</h1>
+    <h1>Product</h1>
 
     <form action="/action_page.php" method="post" id="productForm">
     <table class="table">
@@ -17,7 +17,7 @@
                 <td>{{ product.nom }}</td>
             </tr>
             <tr>
-                <th>Prix</th>
+                <th>Price</th>
                 <td>{{ product.price }}</td>
             </tr>
             <tr>
@@ -43,7 +43,11 @@
     <input type="text" id="lname" name="lname">
     </form>
 
-    <a href="{{ path('app_product_index') }}">Retourner à la liste</a>
+    <a href="{{ path('app_product_index') }}">back to list</a>
 
+<<<<<<< HEAD
+=======
+    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+>>>>>>> parent of 31cae55 (modif)
 
 {% endblock %}

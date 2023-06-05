@@ -30,7 +30,7 @@ inscritption:
     path: /register
     controller: App\Controller\RegistrationController::register
 
-Admin:
+Add_product:
     path: /admin
     controller:  App\Controller\ProductController::new
 

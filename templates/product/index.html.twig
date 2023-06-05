@@ -9,11 +9,11 @@
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
-                <th>Prix</th>
+                <th>Price</th>
                 <th>Description</th>
                 <th>Stock</th>
                 <th>Image</th>
-                <th>Actions</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>
@@ -26,7 +26,12 @@
                 <td>{{ product.stock }}</td>
                 <td>{{ product.image }}</td>
                 <td>
+<<<<<<< HEAD
 
+=======
+                    <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
+                    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+>>>>>>> parent of 31cae55 (modif)
                 </td>
             </tr>
         {% else %}
@@ -37,5 +42,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_product_new') }}">Créer un nouveau produit</a>
+    <a href="{{ path('app_product_new') }}">Create new</a>
 {% endblock %}
