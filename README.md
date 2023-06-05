@@ -78,6 +78,21 @@ The following tools were used in this project:
 - Dans le fichier php.ini décocher l'extension pdo_sqlite.
 - Dans le fichier .env mettre APP_ENV=prod pour la mise en production.
 
+# Informations de codes
+
+- compte admin\
+identifiant : admin@gmail.com\
+mot de passe : admin1234
+
+- compte utilisateur\
+identifiant : user@gmail.com\
+mot de passe : user1234
+
+-compte responsable des stock\
+identifiant : stock@gmail.com\
+mot de passe : stock1234
+
+
 
 
 
