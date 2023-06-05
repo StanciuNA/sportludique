@@ -21,6 +21,20 @@ use App\Form\AdressType;
 
 class PaymentController extends AbstractController
 {
+    private $passerelle;
+    private $manager;
+
+    public function _construct(EntityManagerInterface $manager)
+    {
+        $this->passerelle=Omnipay::create('Paypal_Rest');
+        $this->passerelle->setClientId($_ENV['PAYPAL_CLIENT_ID']);
+        $this->passerelle->setSecret($_ENV['PAYPAL_SECRET_KEY']);
+        $this->passerelle->setTestMode(true);
+
+        $this->manager=$manager;
+        
+    }
+
     #[Route('/orderRecap' , name : 'app_orderRecap')]
     public function index(EntityManagerInterface $entityManager,Request $request): Response{
         
@@ -53,6 +67,41 @@ class PaymentController extends AbstractController
             
             }   
         }
+
+        $token=$request->request->get('token');
+
+        if(!$this->isCsrfTokenValid('myform',$token))
+        {
+             return new Response('Operation non autorisée', Response::HTTP_BAD_REQUEST,
+             ['content-type'=>'text/plain']);
+        }
+ 
+ 
+        $response=$this->passerelle->purchase(array(
+         'amount'=>$request->request->get('amount'),
+         'currency'=>$_ENV['PAYPAL_CURRENCY'],
+         'returnUrl'=>'https://127.0.0.1:8000/success',
+         'cancelUrl'=>'https://127.0.0.1:8000/erreur'
+       
+         ))->send();
+
+      
+         try {
+             if($response->isRedirect())
+             {
+                 $response->redirect();
+             }
+ 
+             else
+             {
+                 return $response->getMessage();
+             }
+         } catch (\Throwable $th) {
+             
+             return $th->getMessage();
+         }
+       
+
 
 
 
@@ -93,6 +142,31 @@ class PaymentController extends AbstractController
         return $this->render('adress.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /*#[Route('/payment', name: 'app_payment')]
+    public function payment(Request $request):Response
+    {
+        
+        return $this->render('payment.html.twig');
+            
+
+    }*/
+
+    #[Route('/sucess', name: 'app_success')]
+    public function success():Response
+    {
+        dd('success');
+            
+
+    }
+
+    #[Route('/erreur', name: 'app_erreur')]
+    public function erreur():Response
+    {
+        dd('erreur');
+            
+
     }
 
 

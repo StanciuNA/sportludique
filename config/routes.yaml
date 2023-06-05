@@ -47,4 +47,4 @@ cart_remove:
 app_informations:
     path: /adressInformation
     controller: App\Controller\PaymentController::adressInformation
-    methods : [GET, POST]
+    methods : [POST]
