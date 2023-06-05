@@ -2,16 +2,37 @@
 
 {% block title %}Register{% endblock %}
 
-{% block body %}
-    <h1>Register</h1>
 
+
+{% block body %}
+<div class="container pt-3 mt-lg-5 col-lg-5 mx-auto">
+    
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
+        <div class="card bg-dark shadow">
+            <div class="card-body">
+                
+                <h1 class="h3 mb-3 font-weight-normal">Inscription</h1>
+
+                
+
+                <label for="username"></label>
+                {{ form_row(registrationForm.email) }}
+                
+                <label class="mt-2" for="password"></label>
+                {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+
+                <label class="mt-2" for="password"></label>
+                {{ form_row(registrationForm.agreeTerms) }}
+                
+                {{ form_end(registrationForm) }}
+                <button type="submit" class="btn">Inscription</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+    
 {% endblock %}

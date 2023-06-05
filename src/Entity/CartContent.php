@@ -81,5 +81,6 @@ class CartContent
         $this->productId = $productId;
 
         return $this;
+        
     }
 }

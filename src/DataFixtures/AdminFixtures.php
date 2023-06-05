@@ -40,12 +40,22 @@ class AdminFixtures extends Fixture
         $user->setName('user');
         $user->setFirstname('toto');
         $user->setPhone('0552654855');
-        $userPassword = $this->hasher->hashPassword($admin, 'user1234');
+        $userPassword = $this->hasher->hashPassword($user, 'user1234');
         $user->setPassword($userPassword);
-    
-
-        $manager->persist($admin);
         $manager->persist($user);
+
+
+        $StockResponsable = new User();
+        $StockResponsable->setEmail('stock@gmail.com');
+        $StockResponsable->setRoles(['ROLE_STOCK']);
+        $StockResponsable->setName('stock');
+        $StockResponsable->setFirstname('responsable');
+        $StockResponsable->setPhone('0552654858');
+        $StockResponsablePassword = $this->hasher->hashPassword($StockResponsable, 'stock1234');
+        $StockResponsable->setPassword($StockResponsablePassword);
+        $manager->persist($StockResponsable);
+
+        
         $manager->flush();
     }
 
