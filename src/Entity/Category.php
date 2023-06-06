@@ -27,9 +27,18 @@ class Category
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
+    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'id_categ_parent')]
+    private ?self $categ_parent = null;
+
+    #[ORM\OneToMany(mappedBy: 'categ_parent', targetEntity: self::class)]
+    private Collection $id_categ_parent;
+
+
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
+        $this->id_categ_parent = new ArrayCollection();
     }
     public function __toString()
     {
@@ -96,4 +105,50 @@ class Category
 
         return $this;
     }
+
+    public function getCategParent(): ?self
+    {
+        return $this->categ_parent;
+    }
+
+    public function setCategParent(?self $categ_parent): self
+    {
+        $this->categ_parent = $categ_parent;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getIdCategParent(): Collection
+    {
+        return $this->id_categ_parent;
+    }
+
+    public function addIdCategParent(self $idCategParent): self
+    {
+        if (!$this->id_categ_parent->contains($idCategParent)) {
+            $this->id_categ_parent->add($idCategParent);
+            $idCategParent->setCategParent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdCategParent(self $idCategParent): self
+    {
+        if ($this->id_categ_parent->removeElement($idCategParent)) {
+            // set the owning side to null (unless already changed)
+            if ($idCategParent->getCategParent() === $this) {
+                $idCategParent->setCategParent(null);
+            }
+        }
+
+        return $this;
+    }
+
+   
+
+   
 }

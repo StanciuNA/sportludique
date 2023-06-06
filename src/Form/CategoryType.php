@@ -6,6 +6,7 @@ use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class CategoryType extends AbstractType
 {
@@ -13,7 +14,7 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('label')
-            ->add('image')
+            ->add('image',FileType::class)
         ;
     }
 
