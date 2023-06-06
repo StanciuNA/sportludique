@@ -36,17 +36,17 @@ class Order
     #[ORM\JoinColumn(nullable: false)]
     private ?Adress $adress = null;
 
-    #[ORM\ManyToOne(inversedBy: 'idOrder')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Cart $cart = null;
 
     #[ORM\Column(nullable: true)]
     private ?float $totalPrice = null;
 
+    #[ORM\OneToMany(mappedBy: 'purchase', targetEntity: CartContent::class)]
+    private Collection $content;
+
 
     public function __construct()
     {
-        
+        $this->content = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -117,18 +117,6 @@ class Order
         return $this;
     }
 
-    public function getCart(): ?Cart
-    {
-        return $this->cart;
-    }
-
-    public function setCart(?Cart $cart): self
-    {
-        $this->cart = $cart;
-
-        return $this;
-    }
-
     public function getTotalPrice(): ?float
     {
         return $this->totalPrice;
@@ -137,6 +125,36 @@ class Order
     public function setTotalPrice(?float $totalPrice): self
     {
         $this->totalPrice = $totalPrice;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CartContent>
+     */
+    public function getContent(): Collection
+    {
+        return $this->content;
+    }
+
+    public function addContent(CartContent $content): self
+    {
+        if (!$this->content->contains($content)) {
+            $this->content->add($content);
+            $content->setPurchase($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContent(CartContent $content): self
+    {
+        if ($this->content->removeElement($content)) {
+            // set the owning side to null (unless already changed)
+            if ($content->getPurchase() === $this) {
+                $content->setPurchase(null);
+            }
+        }
 
         return $this;
     }

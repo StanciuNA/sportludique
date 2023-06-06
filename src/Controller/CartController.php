@@ -29,7 +29,8 @@ class CartController extends AbstractController
             $lastCart = $entityManager->getRepository(cart::class)->findOneBy(
                 ['idPerson' => $user->getId()],
                 ['idPerson' => 'DESC']);
-            $cartProducts = $entityManager->getRepository(CartContent::class)->findBy(['cartId' => $lastCart]);
+            $cartProducts = $entityManager->getRepository(CartContent::class)->findBy(
+                ['cartId' => $lastCart,'purchase' => null]);
             
             foreach($cartProducts as $cartLine){
                 
@@ -70,7 +71,7 @@ class CartController extends AbstractController
 
         $userId= strval($user->getId());
         $cartContent = $entityManager->getRepository(CartContent::class)->findBy(
-            ['cartId' => $lastCart,'productId' => $productId]
+            ['cartId' => $lastCart,'productId' => $productId,]
         );
         if(!$cartContent){
             $cartContent = new CartContent;
@@ -133,8 +134,7 @@ class CartController extends AbstractController
         catch(exception $e){
             $responseData = ['result' => 'failiure'];
         }
-        
-        
+
         return new JsonResponse($responseData);
 
     }
