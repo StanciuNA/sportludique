@@ -30,11 +30,19 @@
                 <h4>Achetez à un prix imbattable</h4>
                 <p>{{ product.getPrice }} euros</p>
                 <button class="btn btn-primary add-to-cart" data-product-id="{{ product.id }}"
-                style="background-color: red; padding-right: 20%;">Ajouter au panier</button>
-                </div>
+                style="background-color: red; padding-right: 20%;">Ajouter au panier</button>  
+              </div>
             </div>
         </div>
     </div>
+      <div class="container" >
+        <div class="comm-section" style="background-color:white;padding-top:2%;
+                                        display:flex;flex-direction:row;
+                                        padding-left:5%;
+                                        padding-right:10%;">
+          <h1 style="padding-left:2%;font-weight: bold;"> Commentaires </h1>  
+        </div>
+      </div>
     {# <a href="{{ path('app_product_index') }}">Retourner à la liste</a> #}
     <script>
         const addToCartButtons = document.querySelectorAll(".add-to-cart");
