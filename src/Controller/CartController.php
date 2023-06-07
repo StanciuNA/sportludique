@@ -13,7 +13,7 @@ use App\Entity\CartContent;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\CartRepository;
 use App\Repository\CartContentRepository;
-use App\Manager\CartManager;
+use App\Container\CartManager;
 
 
 #[Route('/cart')]
@@ -24,11 +24,13 @@ class CartController extends AbstractController
 
         $user = $this->getUser();
         $result = array();
+        $totalPrice = 0;
         if($user){
             $lastCart = $entityManager->getRepository(cart::class)->findOneBy(
                 ['idPerson' => $user->getId()],
                 ['idPerson' => 'DESC']);
-            $cartProducts = $entityManager->getRepository(CartContent::class)->findBy(['cartId' => $lastCart]);
+            $cartProducts = $entityManager->getRepository(CartContent::class)->findBy(
+                ['cartId' => $lastCart,'purchase' => null]);
             
             foreach($cartProducts as $cartLine){
                 
@@ -38,18 +40,15 @@ class CartController extends AbstractController
                 $quantity->setQuantity($cartLine->getQuantity());
                 $quantity->setBulkPrice();
                 $quantity->setCartContent($cartLine);
+                $totalPrice += $quantity->getBulkPrice();
                 array_push($result,$quantity);
-    
             }
-    
-            foreach($result as $a){
-                dump($a->getProduct()->getNom());
-            
-            }   
+   
         }
 
         return $this->renderForm('cart.html.twig',[
             'Products' => $result,
+            'totalPrice' => $totalPrice
         ]);
 
     }
@@ -69,10 +68,10 @@ class CartController extends AbstractController
             $entityManager->persist($lastCart);
             $entityManager->flush();
         }
-        //dump($lastCart);
+
         $userId= strval($user->getId());
         $cartContent = $entityManager->getRepository(CartContent::class)->findBy(
-            ['cartId' => $lastCart,'productId' => $productId]
+            ['cartId' => $lastCart,'productId' => $productId,]
         );
         if(!$cartContent){
             $cartContent = new CartContent;
@@ -90,7 +89,7 @@ class CartController extends AbstractController
             $entityManager->flush();
 
             }
-            dump($cartContent);
+            //dump($cartContent);
             
 
             $response = new Response(
@@ -107,6 +106,7 @@ class CartController extends AbstractController
     return $response;
     
     }
+
     public function removeContent(EntityManagerInterface $entityManager,Request $request): JsonResponse
     {
         $requestData = $request->request->get('CartContentId');
@@ -134,10 +134,30 @@ class CartController extends AbstractController
         catch(exception $e){
             $responseData = ['result' => 'failiure'];
         }
-        
-        
+
         return new JsonResponse($responseData);
 
+    }
 
+    public function updateContent(EntityManagerInterface $entityManager,Request $request): JsonResponse{
+        
+        $quantity = $request->request->get('quantity');
+        $cartId = $request->request->get('cartId');
+        
+        $cartContent = $entityManager->getRepository(cartContent::class)->findOneBy(['id' => $cartId]);
+        $product = $entityManager->getRepository(product::class)->findOneBy(['id' => $cartContent->getProductId()]);
+        
+        if($quantity == 0){
+            $entityManager->remove($cartContent);
+            $entityManager->flush();
+        }
+        else{
+            $cartContent->setQuantity(intval($quantity));
+            $entityManager->flush();
+        }
+        $bulkPrice = intval($quantity) * $product->getPrice();
+
+        $responseData = ['result' => $bulkPrice];
+        return new JsonResponse($responseData);
     }
 }

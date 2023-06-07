@@ -369,6 +369,7 @@ body{
     -o-transform: rotate(90deg);
     transform: rotate(90deg);
 }
+
 .carousel-indicators li{
     display:block; margin-bottom:5px; border:1px solid #00a199; 
     margin-bottom: 5px;}

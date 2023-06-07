@@ -29,6 +29,9 @@ class CartContent
     #[ORM\JoinColumn(nullable: false)]
     private ?Product $productId = null;
 
+    #[ORM\ManyToOne(inversedBy: 'content')]
+    private ?Order $purchase = null;
+
     public function __construct()
     {
         $this->Idperson = new ArrayCollection();
@@ -82,5 +85,17 @@ class CartContent
 
         return $this;
         
+    }
+
+    public function getPurchase(): ?Order
+    {
+        return $this->purchase;
+    }
+
+    public function setPurchase(?Order $purchase): self
+    {
+        $this->purchase = $purchase;
+
+        return $this;
     }
 }
