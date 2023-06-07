@@ -54,7 +54,3 @@ app_payment:
     path: /paymentttt
     controller: App\Controller\PaymentController::payment
     methods: [GET,POST]
-cart_update:
-  path: /cart/update
-  controller: App\Controller\CartController::updateContent
-  methods: POST
